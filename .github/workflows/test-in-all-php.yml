@@ -1,23 +1,20 @@
 name: Test In All PHP Versions
 
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
 
 jobs:
   run_tests:
     name: PHPUnit
+
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        php-version:
-          #- "7.4"
-          #- "8.0"
-          - "8.1"
-          - "8.2"
-        dependency-versions:
-          - "lowest"
-          - "highest"
+        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
+        dependency-versions: [lowest, highest]
 
     steps:
       - name: Checkout
