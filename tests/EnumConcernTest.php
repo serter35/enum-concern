@@ -725,6 +725,11 @@ class EnumConcernTest extends TestCase {
      */
     public function testRuleWithOnly(): void
     {
+        // Check if the only() method exists in the current version of Laravel's Enum rule
+        if (!method_exists(\Illuminate\Validation\Rules\Enum::class, 'only')) {
+            $this->markTestSkipped('The Enum::only() method is not available in this version of Laravel.');
+        }
+
         $cases = [Fruits::BANANA, Fruits::APPLE];
         $rule = Fruits::rule()->only($cases);
 
